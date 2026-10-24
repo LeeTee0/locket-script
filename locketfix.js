@@ -5,7 +5,7 @@ const mapping = {
 // =========   Phần cố định  ========= // 
 var ua = $request.headers["User-Agent"] || $request.headers["user-agent"],
   obj = JSON.parse($response.body);
-obj.Attention = "Chúc mừng bạn! Hãy tận hưởng đi nhé ";
+obj.Attention = "Chúc mừng bạn! Mình là Lee Quang Thang ";
 var NMS = {
       auto_resume_date: null,
       display_name: "locket_1600_1y",
