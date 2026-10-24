@@ -10,7 +10,7 @@ if (ua.includes("Locket")) {
     obj.entries = obj.entries || {};
 
     // ============================================================
-    // 1. CẤU HÌNH GOLD, FEATURE GATES & PAYWALL
+  // 1. CẤU HÌNH GOLD, FEATURE GATES & PAYWALL
     // ============================================================
     Object.assign(obj.entries, {
         feature_gates: JSON.stringify({
@@ -49,6 +49,10 @@ if (ua.includes("Locket")) {
             tag_gradient: true,
             tag_style: "gold_gradient",
             title: "Đã Kích Hoạt Thành Công💛",
+            // === NGÀY KÍCH HOẠT GOLD ===
+            subtitle: "Kích hoạt ngày: 24/10/2026",
+            activation_date: "2026-10-24T00:00:00+07:00",
+            activation_date_display: "24/10/2026",
             feature_set: [
                 {
                     title: "Copyright By Lee Quang Thang",
@@ -58,14 +62,32 @@ if (ua.includes("Locket")) {
             ],
             primary_button_title: "Xong",
             campaign: "locket_gold_welcome_v3",
-            start_at: "2020-01-01T00:00:00",
-            end_at: "2099-12-31T23:59:59",
+            start_at: "2020-01-01T00:00:00+07:00",
+            end_at: "2099-12-31T23:59:59+07:00",
             use_local_time_zone: true
         }),
         android_subscribe_gold_button_enabled: "false",
         profile_badge_visible: "true",
         lunar_new_year_app_icon_enabled: "true",
-        
+
+        // === GOLD ACTIVATION DATE ===
+        gold_activation_date: "2026-10-24T00:00:00+07:00",
+        gold_activation_date_display: "24/10/2026",
+        gold_since: "24/10/2026",
+        gold_start_date: "2026-10-24",
+        gold_subscription_start: "2026-10-24T00:00:00+07:00",
+        gold_member_since: "24/10/2026",
+        profile_gold_badge_enabled: "true",
+        profile_gold_since: "24/10/2026",
+        profile_gold_activation_date: "2026-10-24T00:00:00+07:00",
+        profile_gold_badge_config: JSON.stringify({
+            enabled: true,
+            show_since_date: true,
+            since_date: "24/10/2026",
+            badge_color: "#FFD700",
+            badge_style: "gold",
+            display_format: "Gold since {date}"
+        })
     });
 
     // ============================================================
@@ -90,7 +112,7 @@ if (ua.includes("Locket")) {
     });
 
     // ============================================================
-   // 3. CAMERA, VIDEO, FILTERS & UPLOAD QUALITY
+// 3. CAMERA, VIDEO, FILTERS & UPLOAD QUALITY
 // ============================================================
 Object.assign(obj.entries, {
 camera: JSON.stringify({
@@ -108,9 +130,13 @@ srgb: true,
 lanczos: true,
 quality_mbps: 0.9,
 qualityMbps: 0.9,
+// === AUDIO ===
 video_sound_enabled: true,
 microphone_enabled: true,
-camera_microphone_enabled: true
+camera_microphone_enabled: true,
+record_audio: true,
+video_with_audio: true,
+audio_session_deactivation_enabled: false
 }),
 
 camera_roll: JSON.stringify({
@@ -126,9 +152,13 @@ camera_roll: JSON.stringify({
     quality_mbps: 0.9,
     qualityMbps: 0.9,
     flash_button: true,
+    // === AUDIO ===
     video_sound_enabled: true,
     microphone_enabled: true,
-    camera_microphone_enabled: true
+    camera_microphone_enabled: true,
+    record_audio: true,
+    video_with_audio: true,
+    audio_session_deactivation_enabled: false
 }),
 
 live_photos: JSON.stringify({
@@ -224,11 +254,13 @@ trim_max_duration: "60.0",
 gold_max_duration: "60.0",
 goldMaxDuration: "60.0",
 
-// Video audio settings
+// === VIDEO AUDIO SETTINGS (top-level fallback) ===
 video_sound_enabled: "true",
 microphone_enabled: "true",
 camera_microphone_enabled: "true",
-audio_session_deactivation_enabled: "true",
+record_audio: "true",
+video_with_audio: "true",
+audio_session_deactivation_enabled: "false",
 
 // Camera controls
 zoom_enabled: "true",
@@ -335,50 +367,90 @@ video_quality_mbps: "0.9"
     });
 
     // ============================================================
-    // 6. WIDGET, THÔNG BÁO & GIAO DIỆN (JOURNAL / PROFILE)
+   // 6. WIDGET, THÔNG BÁO & GIAO DIỆN (JOURNAL / PROFILE)
+// ============================================================
+Object.assign(obj.entries, {
+    widget_frame_event_max_images: "5",
+    android_widget_frame_event_enabled: "true",
+    widget_badge_enabled: "true",
+    widget_badge_v2: "true",
+    widget_stale_state_enabled: "false",
+    widget_last_sent_indicator: "false",
+    widget_sync_token_reload_mode: "clearTokenNever",
+    widget_frame_event: JSON.stringify({
+        uid: "Welcome_2027",
+        url: "https://i.postimg.cc/fbY7MGdR/hlw.png",
+        use_local_time_zone: true,
+        placement: "below",
+        start_at: "2020-01-01T00:00:00",
+        end_at: "2099-12-31T23:59:59"
+    }),
+    live_activity_onboarding: "true",
+    live_activity_onboarding_variant: "friending",
+    register_live_activity_push_to_start_token: "true",
+    live_activity_remove_stale_start_token: "true",
+    notification_preferences_live_activities: "true",
+    notification_preferences: "true",
+    notification_reply_body_visible: "true",
+    prompt_notification_permissions_after_friending: "true",
+    activity_bar_enabled: "true",
+    journal_activity_bar_enabled: "true",
+    journal_settings: JSON.stringify({
+        debug_menu_enabled: false,
+        focus_animation: true,
+        compact_header: true,
+        friends_button: true,
+        reverse_scroll_direction: false,
+        streak_visualization: true,
+        streak_visualization_style: "gradient",
+        streak_header_minimum_count: 0,
+        streak_visualization_minimum_count: 2,
+        overlay_indicators: { location: true, music: true, static_content: true, weather: true }
+    }),
+    qr_code_config: JSON.stringify({ profile_enabled: true, scanning_enabled: true }),
+    custom_profile_pics: "true",
+    profile_menu_v2_enabled: "true",
+
     // ============================================================
-    Object.assign(obj.entries, {
-        widget_frame_event_max_images: "5",
-        android_widget_frame_event_enabled: "true",
-        widget_badge_enabled: "true",
-        widget_badge_v2: "true",
-        widget_stale_state_enabled: "false",
-        widget_last_sent_indicator: "false",
-        widget_sync_token_reload_mode: "clearTokenNever",
-        widget_frame_event: JSON.stringify({
-            uid: "Welcome_2027",            
-            url: "https://i.postimg.cc/fbY7MGdR/hlw.png",
-            use_local_time_zone: true,
-            placement: "below",
-            start_at: "2020-01-01T00:00:00",
-            end_at: "2099-12-31T23:59:59"
-        }),
-        live_activity_onboarding: "true",
-        live_activity_onboarding_variant: "friending",
-        register_live_activity_push_to_start_token: "true",
-        live_activity_remove_stale_start_token: "true",
-        notification_preferences_live_activities: "true",
-        notification_preferences: "true",
-        notification_reply_body_visible: "true",
-        prompt_notification_permissions_after_friending: "true",
-        activity_bar_enabled: "true",
-        journal_activity_bar_enabled: "true",
-        journal_settings: JSON.stringify({
-            debug_menu_enabled: false,
-            focus_animation: true,
-            compact_header: true,
-            friends_button: true,
-            reverse_scroll_direction: false,
-            streak_visualization: true,
-            streak_visualization_style: "gradient",
-            streak_header_minimum_count: 0,
-            streak_visualization_minimum_count: 2,
-            overlay_indicators: { location: true, music: true, static_content: true, weather: true }
-        }),
-        qr_code_config: JSON.stringify({ profile_enabled: true, scanning_enabled: true }),
-        custom_profile_pics: "true",
-        profile_menu_v2_enabled: "true"
-    });
+    // === VERIFIED BADGE / TÍCH XANH ===
+    // ============================================================
+    // Bật hiển thị badge verified trên profile của chính bạn
+    profile_verified_badge_enabled: "true",
+    profile_verified_badge_visible: "true",
+    verified_badge_enabled: "true",
+    verified_badge_visible: "true",
+    blue_check_enabled: "true",
+    blue_check_visible: "true",
+
+    // Cấu hình chi tiết badge (nếu client đọc object này)
+    profile_badge_config: JSON.stringify({
+        enabled: true,
+        type: "verified",
+        style: "blue_check",
+        color: "#1DA1F2",
+        icon: "checkmark.seal.fill",
+        show_on_profile: true,
+        show_on_journal: true,
+        show_on_comments: true,
+        show_on_friends_list: true,
+        size: "medium",
+        position: "next_to_name"
+    }),
+
+    // Fallback cho một số bản mod dùng key khác
+    verified_badge: JSON.stringify({
+        enabled: true,
+        badge_type: "blue_check",
+        badge_style: "verified",
+        badge_color: "#1DA1F2",
+        show_globally: true
+    }),
+
+    // Profile badge tổng (đã có ở file 1 nhưng nhắc lại cho chắc)
+    profile_badge_visible: "true",
+    profile_badge_style: "blue_check",
+    profile_badge_color: "#1DA1F2"
+});
 
     // ============================================================
     // 7. HỆ THỐNG, CACHE & STORAGE CDN
